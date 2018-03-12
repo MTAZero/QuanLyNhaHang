@@ -21,6 +21,10 @@ namespace BTL_CNPM.Data
 
         public int? HOADONID { get; set; }
 
+        public int? KHUVUCBANID { get; set; }
+
         public virtual HOADON HOADON { get; set; }
+
+        public virtual KHUVUCBAN KHUVUCBAN { get; set; }
     }
 }

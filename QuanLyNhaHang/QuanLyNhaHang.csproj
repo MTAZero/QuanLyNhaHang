@@ -118,6 +118,8 @@
     <Compile Include="Data\CHITIETNHAP.cs" />
     <Compile Include="Data\HOADON.cs" />
     <Compile Include="Data\KHO.cs" />
+    <Compile Include="Data\KHUVUCBAN.cs" />
+    <Compile Include="Data\LOAIMATHANG.cs" />
     <Compile Include="Data\MATHANG.cs" />
     <Compile Include="Data\NHANVIEN.cs" />
     <Compile Include="Data\PHIEUNHAP.cs" />

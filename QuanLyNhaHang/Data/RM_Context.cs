@@ -17,6 +17,8 @@ namespace BTL_CNPM.Data
         public virtual DbSet<CHITIETNHAP> CHITIETNHAPs { get; set; }
         public virtual DbSet<HOADON> HOADONs { get; set; }
         public virtual DbSet<KHO> KHOes { get; set; }
+        public virtual DbSet<KHUVUCBAN> KHUVUCBANs { get; set; }
+        public virtual DbSet<LOAIMATHANG> LOAIMATHANGs { get; set; }
         public virtual DbSet<MATHANG> MATHANGs { get; set; }
         public virtual DbSet<NHANVIEN> NHANVIENs { get; set; }
         public virtual DbSet<PHIEUNHAP> PHIEUNHAPs { get; set; }

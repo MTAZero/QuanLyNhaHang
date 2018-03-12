@@ -30,6 +30,8 @@ namespace BTL_CNPM.Data
         [Column(TypeName = "image")]
         public byte[] ANH { get; set; }
 
+        public int? LOAIMATHANGID { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
 
@@ -38,5 +40,7 @@ namespace BTL_CNPM.Data
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KHO> KHOes { get; set; }
+
+        public virtual LOAIMATHANG LOAIMATHANG { get; set; }
     }
 }
