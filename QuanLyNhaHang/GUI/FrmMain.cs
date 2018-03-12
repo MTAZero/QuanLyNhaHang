@@ -127,5 +127,21 @@ namespace BTL_CNPM.GUI
             uc.Dock = DockStyle.Fill;
             panelMain.Controls.Add(uc);
         }
+
+        private void barKhuVucBan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            ucDanhSachKhuVucBan uc = new ucDanhSachKhuVucBan();
+            uc.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(uc);
+        }
+
+        private void barLoaiMatHang_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            ucDanhSachLoaiMatHang uc = new ucDanhSachLoaiMatHang();
+            uc.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(uc);
+        }
     }
 }

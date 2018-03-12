@@ -167,6 +167,18 @@
     <Compile Include="GUI\ucBanHang.Designer.cs">
       <DependentUpon>ucBanHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ucDanhSachLoaiMatHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ucDanhSachLoaiMatHang.Designer.cs">
+      <DependentUpon>ucDanhSachLoaiMatHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ucDanhSachKhuVucBan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ucDanhSachKhuVucBan.Designer.cs">
+      <DependentUpon>ucDanhSachKhuVucBan.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\ucDanhSachBanAn.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -264,6 +276,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ucBanHang.resx">
       <DependentUpon>ucBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ucDanhSachLoaiMatHang.resx">
+      <DependentUpon>ucDanhSachLoaiMatHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ucDanhSachKhuVucBan.resx">
+      <DependentUpon>ucDanhSachKhuVucBan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ucDanhSachBanAn.resx">
       <DependentUpon>ucDanhSachBanAn.cs</DependentUpon>
