@@ -24,30 +24,29 @@ namespace BTL_CNPM.GUI
         #endregion
 
         #region Hàm chức năng
-        private BANAN getBANANByID()
+        private KHUVUCBAN getKHUVUCBANByID()
         {
             try
             {
-                int id = (int)dgvBANAN.GetFocusedRowCellValue("ID");
-                BANAN ans = db.BANANs.Where(p => p.ID == id).FirstOrDefault();
-                if (ans == null) return new BANAN();
+                int id = (int)dgvKhuVuc.GetFocusedRowCellValue("ID");
+                KHUVUCBAN ans = db.KHUVUCBANs.Where(p => p.ID == id).FirstOrDefault();
+                if (ans == null) return new KHUVUCBAN();
                 return ans;
             }
             catch
             {
-                return new BANAN();
+                return new KHUVUCBAN();
             }
         }
 
-        private BANAN getBANANByForm()
+        private KHUVUCBAN getKHUVUCBANByForm()
         {
-            BANAN ans = new BANAN();
+            KHUVUCBAN ans = new KHUVUCBAN();
 
             try
             {
-                ans.TEN = txtTenBan.Text;
+                ans.TEN = txtTenKhuVuc.Text;
                 ans.VITRI = txtViTri.Text;
-                ans.SOCHO = Int32.Parse(txtSoCho.Text);
             }
             catch { }
 
@@ -56,22 +55,20 @@ namespace BTL_CNPM.GUI
 
         private void ClearControl()
         {
-            txtTenBan.Text = "";
+            txtTenKhuVuc.Text = "";
             txtViTri.Text = "";
-            txtSoCho.Text = "";
         }
 
         private void UpdateDetail()
         {
             try
             {
-                BANAN tg = getBANANByID();
+                KHUVUCBAN tg = getKHUVUCBANByID();
 
                 if (tg.ID == 0) return;
 
-                txtTenBan.Text = tg.TEN;
+                txtTenKhuVuc.Text = tg.TEN;
                 txtViTri.Text = tg.VITRI;
-                txtSoCho.Text = tg.SOCHO.ToString();
             }
             catch
             {
@@ -81,11 +78,10 @@ namespace BTL_CNPM.GUI
 
         private void LockControl()
         {
-            txtTenBan.Enabled = false;
-            txtSoCho.Enabled = false;
+            txtTenKhuVuc.Enabled = false;
             txtViTri.Enabled = false;
 
-            dgvBANANMain.Enabled = true;
+            dgvKhuVucMain.Enabled = true;
             txtTimKiem.Enabled = true;
 
             btnThem.Enabled = true;
@@ -95,32 +91,18 @@ namespace BTL_CNPM.GUI
 
         private void UnlockControl()
         {
-            txtTenBan.Enabled = true;
-            txtSoCho.Enabled = true;
+            txtTenKhuVuc.Enabled = true;
             txtViTri.Enabled = true;
 
-            dgvBANANMain.Enabled = false;
+            dgvKhuVucMain.Enabled = false;
             txtTimKiem.Enabled = false;
         }
 
         private bool Check()
         {
-            if (txtTenBan.Text == "")
+            if (txtTenKhuVuc.Text == "")
             {
-                MessageBox.Show("Tên bàn ăn không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            try
-            {
-                int giasp = Int32.Parse(txtSoCho.Text);
-            }
-            catch
-            {
-                MessageBox.Show("Số chỗ của bàn ăn phải là số nguyên",
-                                "Thông báo",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                MessageBox.Show("Tên khu vực không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -137,10 +119,10 @@ namespace BTL_CNPM.GUI
 
         private bool CheckLuaChon()
         {
-            BANAN tg = getBANANByID();
+            KHUVUCBAN tg = getKHUVUCBANByID();
             if (tg.ID == 0)
             {
-                MessageBox.Show("Chưa có bàn ăn nào được chọn",
+                MessageBox.Show("Chưa có khu vực nào được chọn",
                                 "Thông báo",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
@@ -149,10 +131,9 @@ namespace BTL_CNPM.GUI
             return true;
         }
 
-        private void CapNhat(ref BANAN cu, BANAN moi)
+        private void CapNhat(ref KHUVUCBAN cu, KHUVUCBAN moi)
         {
             cu.TEN = moi.TEN;
-            cu.SOCHO = moi.SOCHO;
             cu.VITRI = moi.VITRI;
         }
         #endregion
@@ -162,28 +143,26 @@ namespace BTL_CNPM.GUI
         {
             ClearControl();
         }
-        private void LoadDgvBANAN()
+        private void LoadDgvKHUVUCBAN()
         {
             string keyWord = txtTimKiem.Text.ToUpper();
             int i = 0;
-            var listBANAN = db.BANANs.ToList()
+            var listKHUVUCBAN = db.KHUVUCBANs.ToList()
                               .Select(p => new
                               {
                                   ID = p.ID,
                                   Ten = p.TEN,
-                                  SoCho = p.SOCHO,
                                   ViTri = p.VITRI
                               })
                               .ToList();
 
-            dgvBANANMain.DataSource = listBANAN.ToList()
+            dgvKhuVucMain.DataSource = listKHUVUCBAN.ToList()
                                          .Where(p => p.Ten.ToUpper().Contains(keyWord) || p.ViTri.ToUpper().Contains(keyWord))
                                          .Select(p => new
                                          {
                                              ID = p.ID,
                                              STT = ++i,
                                              Ten = p.Ten,
-                                             SoCho = p.SoCho,
                                              ViTri = p.ViTri
                                          }).ToList();
 
@@ -193,18 +172,18 @@ namespace BTL_CNPM.GUI
             try
             {
                 index = index1;
-                dgvBANAN.FocusedRowHandle = index;
-                dgvBANANMain.Select();
+                dgvKhuVuc.FocusedRowHandle = index;
+                dgvKhuVucMain.Select();
             }
             catch
             {
 
             }
         }
-        private void ucDanhSachBanAn_Load(object sender, EventArgs e)
+        private void ucDanhSachKHUVUCBAN_Load(object sender, EventArgs e)
         {
             LoadInitControl();
-            LoadDgvBANAN();
+            LoadDgvKHUVUCBAN();
             LockControl();
         }
         #endregion
@@ -233,26 +212,25 @@ namespace BTL_CNPM.GUI
                     btnXoa.Text = "Xóa";
                     LockControl();
 
-                    BANAN moi = getBANANByForm();
-                    moi.TRANGTHAI = 0;
-                    db.BANANs.Add(moi);
+                    KHUVUCBAN moi = getKHUVUCBANByForm();
+                    db.KHUVUCBANs.Add(moi);
 
                     try
                     {
                         db.SaveChanges();
-                        MessageBox.Show("Thêm thông tin bàn ăn thành công",
+                        MessageBox.Show("Thêm thông tin khu vực thành công",
                                         "Thông báo",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Thêm thông tin bàn ăn thất bại\n" + ex.Message,
+                        MessageBox.Show("Thêm thông tin khu vực thất bại\n" + ex.Message,
                                         "Thông báo",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
                     }
-                    LoadDgvBANAN();
+                    LoadDgvKHUVUCBAN();
                 }
                 return;
             }
@@ -282,26 +260,26 @@ namespace BTL_CNPM.GUI
 
                     LockControl();
 
-                    BANAN cu = getBANANByID();
-                    BANAN moi = getBANANByForm();
+                    KHUVUCBAN cu = getKHUVUCBANByID();
+                    KHUVUCBAN moi = getKHUVUCBANByForm();
                     CapNhat(ref cu, moi);
 
                     try
                     {
                         db.SaveChanges();
-                        MessageBox.Show("Sưa thông tin bàn ăn thành công",
+                        MessageBox.Show("Sưa thông tin khu vực thành công",
                                         "Thông báo",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Sửa thông tin bàn ăn thất bại\n" + ex.Message,
+                        MessageBox.Show("Sửa thông tin khu vực thất bại\n" + ex.Message,
                                         "Thông báo",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
                     }
-                    LoadDgvBANAN();
+                    LoadDgvKHUVUCBAN();
                 }
 
                 return;
@@ -314,8 +292,8 @@ namespace BTL_CNPM.GUI
             {
                 if (!CheckLuaChon()) return;
 
-                BANAN cu = getBANANByID();
-                DialogResult rs = MessageBox.Show("Bạn có chắc chắn xóa bàn ăn " + cu.TEN + "?",
+                KHUVUCBAN cu = getKHUVUCBANByID();
+                DialogResult rs = MessageBox.Show("Bạn có chắc chắn xóa khu vực " + cu.TEN + "?",
                                                   "Thông báo",
                                                   MessageBoxButtons.OKCancel,
                                                   MessageBoxIcon.Warning);
@@ -324,21 +302,21 @@ namespace BTL_CNPM.GUI
 
                 try
                 {
-                    db.BANANs.Remove(cu);
+                    db.KHUVUCBANs.Remove(cu);
                     db.SaveChanges();
-                    MessageBox.Show("Xóa thông tin bàn ăn thành công",
+                    MessageBox.Show("Xóa thông tin khu vực thành công",
                                     "Thông báo",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Xóa thông tin bàn ăn thất bại\n" + ex.Message,
+                    MessageBox.Show("Xóa thông tin khu vực thất bại\n" + ex.Message,
                                     "Thông báo",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                 }
-                LoadDgvBANAN();
+                LoadDgvKHUVUCBAN();
 
                 return;
             }
@@ -358,18 +336,18 @@ namespace BTL_CNPM.GUI
         #region Sự kiện ngầm
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            LoadDgvBANAN();
+            LoadDgvKHUVUCBAN();
             txtTimKiem.Focus();
         }
 
-        private void dgvBanAn_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        private void dgvKHUVUCBAN_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             UpdateDetail();
 
             try
             {
                 index1 = index;
-                index = dgvBANAN.FocusedRowHandle;
+                index = dgvKhuVuc.FocusedRowHandle;
             }
             catch { }
         }
