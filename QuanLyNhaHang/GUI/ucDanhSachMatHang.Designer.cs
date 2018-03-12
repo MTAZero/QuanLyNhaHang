@@ -57,6 +57,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbxLoaiMatHang = new DevExpress.XtraEditors.LookUpEdit();
+            this.LoaiMatHang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -67,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMATHANGMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMATHANG)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxLoaiMatHang.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -136,6 +140,8 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.cbxLoaiMatHang);
+            this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.panel5);
             this.groupBox3.Controls.Add(this.txtThanhPhan);
             this.groupBox3.Controls.Add(this.txtGiaBan);
@@ -201,31 +207,31 @@
             // 
             // txtThanhPhan
             // 
-            this.txtThanhPhan.Location = new System.Drawing.Point(129, 327);
+            this.txtThanhPhan.Location = new System.Drawing.Point(129, 367);
             this.txtThanhPhan.Name = "txtThanhPhan";
             this.txtThanhPhan.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtThanhPhan.Properties.Appearance.Options.UseFont = true;
             this.txtThanhPhan.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
-            this.txtThanhPhan.Size = new System.Drawing.Size(346, 68);
+            this.txtThanhPhan.Size = new System.Drawing.Size(346, 28);
             this.txtThanhPhan.TabIndex = 16;
             // 
             // txtGiaBan
             // 
-            this.txtGiaBan.Location = new System.Drawing.Point(129, 270);
+            this.txtGiaBan.Location = new System.Drawing.Point(129, 317);
             this.txtGiaBan.Name = "txtGiaBan";
             this.txtGiaBan.Size = new System.Drawing.Size(202, 24);
             this.txtGiaBan.TabIndex = 8;
             // 
             // txtDonViTinh
             // 
-            this.txtDonViTinh.Location = new System.Drawing.Point(129, 216);
+            this.txtDonViTinh.Location = new System.Drawing.Point(129, 263);
             this.txtDonViTinh.Name = "txtDonViTinh";
             this.txtDonViTinh.Size = new System.Drawing.Size(202, 24);
             this.txtDonViTinh.TabIndex = 7;
             // 
             // txtTenMatHang
             // 
-            this.txtTenMatHang.Location = new System.Drawing.Point(129, 162);
+            this.txtTenMatHang.Location = new System.Drawing.Point(129, 209);
             this.txtTenMatHang.Name = "txtTenMatHang";
             this.txtTenMatHang.Size = new System.Drawing.Size(202, 24);
             this.txtTenMatHang.TabIndex = 6;
@@ -233,7 +239,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 327);
+            this.label5.Location = new System.Drawing.Point(23, 370);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 17);
             this.label5.TabIndex = 5;
@@ -242,7 +248,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 273);
+            this.label4.Location = new System.Drawing.Point(23, 320);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 17);
             this.label4.TabIndex = 4;
@@ -251,7 +257,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 219);
+            this.label3.Location = new System.Drawing.Point(23, 266);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 17);
             this.label3.TabIndex = 3;
@@ -260,7 +266,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 165);
+            this.label2.Location = new System.Drawing.Point(23, 212);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 17);
             this.label2.TabIndex = 2;
@@ -303,6 +309,7 @@
             this.dgvMATHANG.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.STT,
             this.Ten,
+            this.LoaiMatHang,
             this.DonViTinh,
             this.GiaBan});
             this.dgvMATHANG.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
@@ -330,7 +337,7 @@
             this.STT.Name = "STT";
             this.STT.Visible = true;
             this.STT.VisibleIndex = 0;
-            this.STT.Width = 66;
+            this.STT.Width = 61;
             // 
             // Ten
             // 
@@ -339,7 +346,7 @@
             this.Ten.Name = "Ten";
             this.Ten.Visible = true;
             this.Ten.VisibleIndex = 1;
-            this.Ten.Width = 434;
+            this.Ten.Width = 308;
             // 
             // DonViTinh
             // 
@@ -349,8 +356,8 @@
             this.DonViTinh.FieldName = "DonViTinh";
             this.DonViTinh.Name = "DonViTinh";
             this.DonViTinh.Visible = true;
-            this.DonViTinh.VisibleIndex = 2;
-            this.DonViTinh.Width = 246;
+            this.DonViTinh.VisibleIndex = 3;
+            this.DonViTinh.Width = 186;
             // 
             // GiaBan
             // 
@@ -360,8 +367,8 @@
             this.GiaBan.FieldName = "GiaBan";
             this.GiaBan.Name = "GiaBan";
             this.GiaBan.Visible = true;
-            this.GiaBan.VisibleIndex = 3;
-            this.GiaBan.Width = 287;
+            this.GiaBan.VisibleIndex = 4;
+            this.GiaBan.Width = 156;
             // 
             // groupBox1
             // 
@@ -391,6 +398,41 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tìm kiếm tên mặt hàng";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(23, 170);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(95, 17);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Loại mặt hàng:";
+            // 
+            // cbxLoaiMatHang
+            // 
+            this.cbxLoaiMatHang.Location = new System.Drawing.Point(129, 166);
+            this.cbxLoaiMatHang.Name = "cbxLoaiMatHang";
+            this.cbxLoaiMatHang.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.cbxLoaiMatHang.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 11F);
+            this.cbxLoaiMatHang.Properties.Appearance.Options.UseFont = true;
+            this.cbxLoaiMatHang.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Times New Roman", 11F);
+            this.cbxLoaiMatHang.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cbxLoaiMatHang.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.cbxLoaiMatHang.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxLoaiMatHang.Properties.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.cbxLoaiMatHang.Properties.ShowHeader = false;
+            this.cbxLoaiMatHang.Size = new System.Drawing.Size(276, 26);
+            this.cbxLoaiMatHang.TabIndex = 36;
+            // 
+            // LoaiMatHang
+            // 
+            this.LoaiMatHang.Caption = "Loại mặt hàng";
+            this.LoaiMatHang.FieldName = "LoaiMatHang";
+            this.LoaiMatHang.Name = "LoaiMatHang";
+            this.LoaiMatHang.Visible = true;
+            this.LoaiMatHang.VisibleIndex = 2;
+            this.LoaiMatHang.Width = 322;
+            // 
             // ucDanhSachMatHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,6 +454,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMATHANG)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxLoaiMatHang.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -446,5 +489,8 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label txtTitleDonViTinh;
         private System.Windows.Forms.Label txtTitleTen;
+        private System.Windows.Forms.Label label6;
+        private DevExpress.XtraEditors.LookUpEdit cbxLoaiMatHang;
+        private DevExpress.XtraGrid.Columns.GridColumn LoaiMatHang;
     }
 }

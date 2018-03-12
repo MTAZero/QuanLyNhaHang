@@ -28,6 +28,17 @@ namespace BTL_CNPM.GUI
         private void LoadInitControl()
         {
             ClearControl();
+
+            // Load loại mặt hàng combobox
+            cbxLoaiMatHang.Properties.DataSource = db.LOAIMATHANGs
+                                                   .Select(p => new
+                                                   {
+                                                       ID = p.ID,
+                                                       TEN = p.TEN
+                                                   }).ToList();
+            cbxLoaiMatHang.Properties.DisplayMember = "TEN";
+            cbxLoaiMatHang.Properties.ValueMember = "ID";
+            cbxLoaiMatHang.ItemIndex = 0;
         }
         private void LoadDgvMatHang()
         {
@@ -39,19 +50,21 @@ namespace BTL_CNPM.GUI
                                   ID = p.ID,
                                   Ten = p.TEN,
                                   DonViTinh = p.DONVITINH,
-                                  GiaBan = ((int)p.GIABAN).ToString("N0") + " vnđ"
+                                  GiaBan = ((int)p.GIABAN).ToString("N0") + " vnđ",
+                                  LoaiMatHang = db.LOAIMATHANGs.Where(z=>z.ID == p.LOAIMATHANGID).FirstOrDefault().TEN.ToString()
                               })
                               .ToList();
 
             dgvMATHANGMain.DataSource = listMatHang.ToList()
-                                         .Where(p => p.Ten.ToUpper().Contains(keyWord) || p.DonViTinh.ToUpper().Contains(keyWord) || p.GiaBan.ToUpper().Contains(keyWord))
+                                         .Where(p => p.Ten.ToUpper().Contains(keyWord) || p.DonViTinh.ToUpper().Contains(keyWord) || p.GiaBan.ToUpper().Contains(keyWord) || p.LoaiMatHang.ToUpper().Contains(keyWord))
                                          .Select(p => new
                                          {
                                              ID = p.ID,
                                              STT = ++i,
                                              Ten = p.Ten,
                                              DonViTinh = p.DonViTinh,
-                                             GiaBan = p.GiaBan
+                                             GiaBan = p.GiaBan,
+                                             LoaiMatHang = p.LoaiMatHang
                                          }).ToList();
 
             UpdateDetail();
@@ -102,6 +115,7 @@ namespace BTL_CNPM.GUI
                 ans.TEN = txtTenMatHang.Text;
                 ans.DONVITINH = txtDonViTinh.Text;
                 ans.THANHPHAN = txtThanhPhan.Text;
+                ans.LOAIMATHANGID = (int)cbxLoaiMatHang.EditValue;
 
                 ans.GIABAN = Int32.Parse(txtGiaBan.Text);
                 ans.ANH = Helper.imageToByteArray(imgAnh.Image);
@@ -118,11 +132,10 @@ namespace BTL_CNPM.GUI
             txtThanhPhan.Text = "";
             txtGiaBan.Text = "";
             imgAnh.Image = null;
+            cbxLoaiMatHang.ItemIndex = 0;
 
             txtTitleTen.Text = "";
             txtTitleDonViTinh.Text = "";
-
-            
         }
 
         private void UpdateDetail()
@@ -137,6 +150,7 @@ namespace BTL_CNPM.GUI
                 txtDonViTinh.Text = tg.DONVITINH;
                 txtThanhPhan.Text = tg.THANHPHAN;
                 txtGiaBan.Text = tg.GIABAN.ToString();
+                cbxLoaiMatHang.EditValue = tg.LOAIMATHANGID;
 
                 txtTitleTen.Text = tg.TEN;
                 txtTitleDonViTinh.Text = tg.DONVITINH;
@@ -157,6 +171,7 @@ namespace BTL_CNPM.GUI
             txtGiaBan.Enabled = false;
             txtThanhPhan.Enabled = false;
             imgAnh.Enabled = false;
+            cbxLoaiMatHang.Enabled = false;
             
             dgvMATHANGMain.Enabled = true;
             txtTimKiem.Enabled = true;
@@ -173,6 +188,7 @@ namespace BTL_CNPM.GUI
             txtGiaBan.Enabled = true;
             txtThanhPhan.Enabled = true;
             imgAnh.Enabled = true;
+            cbxLoaiMatHang.Enabled = true;
 
             dgvMATHANGMain.Enabled = false;
             txtTimKiem.Enabled = false;
@@ -235,6 +251,7 @@ namespace BTL_CNPM.GUI
             cu.GIABAN = moi.GIABAN;
             cu.THANHPHAN = moi.THANHPHAN;
             cu.ANH = moi.ANH;
+            cu.LOAIMATHANGID = moi.LOAIMATHANGID;
         }
         #endregion
 
