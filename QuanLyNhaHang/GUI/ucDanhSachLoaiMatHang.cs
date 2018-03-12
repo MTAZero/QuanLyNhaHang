@@ -24,30 +24,28 @@ namespace BTL_CNPM.GUI
         #endregion
 
         #region Hàm chức năng
-        private BANAN getBANANByID()
+        private LOAIMATHANG getLOAIMATHANGByID()
         {
             try
             {
-                int id = (int)dgvBANAN.GetFocusedRowCellValue("ID");
-                BANAN ans = db.BANANs.Where(p => p.ID == id).FirstOrDefault();
-                if (ans == null) return new BANAN();
+                int id = (int)dgvLoaiMatHang.GetFocusedRowCellValue("ID");
+                LOAIMATHANG ans = db.LOAIMATHANGs.Where(p => p.ID == id).FirstOrDefault();
+                if (ans == null) return new LOAIMATHANG();
                 return ans;
             }
             catch
             {
-                return new BANAN();
+                return new LOAIMATHANG();
             }
         }
 
-        private BANAN getBANANByForm()
+        private LOAIMATHANG getLOAIMATHANGByForm()
         {
-            BANAN ans = new BANAN();
+            LOAIMATHANG ans = new LOAIMATHANG();
 
             try
             {
-                ans.TEN = txtTenBan.Text;
-                ans.VITRI = txtViTri.Text;
-                ans.SOCHO = Int32.Parse(txtSoCho.Text);
+                ans.TEN = txtTenLoaiMatHang.Text;
             }
             catch { }
 
@@ -56,22 +54,18 @@ namespace BTL_CNPM.GUI
 
         private void ClearControl()
         {
-            txtTenBan.Text = "";
-            txtViTri.Text = "";
-            txtSoCho.Text = "";
+            txtTenLoaiMatHang.Text = "";
         }
 
         private void UpdateDetail()
         {
             try
             {
-                BANAN tg = getBANANByID();
+                LOAIMATHANG tg = getLOAIMATHANGByID();
 
                 if (tg.ID == 0) return;
 
-                txtTenBan.Text = tg.TEN;
-                txtViTri.Text = tg.VITRI;
-                txtSoCho.Text = tg.SOCHO.ToString();
+                txtTenLoaiMatHang.Text = tg.TEN;
             }
             catch
             {
@@ -81,11 +75,9 @@ namespace BTL_CNPM.GUI
 
         private void LockControl()
         {
-            txtTenBan.Enabled = false;
-            txtSoCho.Enabled = false;
-            txtViTri.Enabled = false;
+            txtTenLoaiMatHang.Enabled = false;
 
-            dgvBANANMain.Enabled = true;
+            dgvLoaiMatHangMain.Enabled = true;
             txtTimKiem.Enabled = true;
 
             btnThem.Enabled = true;
@@ -95,52 +87,29 @@ namespace BTL_CNPM.GUI
 
         private void UnlockControl()
         {
-            txtTenBan.Enabled = true;
-            txtSoCho.Enabled = true;
-            txtViTri.Enabled = true;
+            txtTenLoaiMatHang.Enabled = true;
 
-            dgvBANANMain.Enabled = false;
+            dgvLoaiMatHangMain.Enabled = false;
             txtTimKiem.Enabled = false;
         }
 
         private bool Check()
         {
-            if (txtTenBan.Text == "")
+            if (txtTenLoaiMatHang.Text == "")
             {
-                MessageBox.Show("Tên bàn ăn không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Tên loại mặt hàng không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
-            try
-            {
-                int giasp = Int32.Parse(txtSoCho.Text);
-            }
-            catch
-            {
-                MessageBox.Show("Số chỗ của bàn ăn phải là số nguyên",
-                                "Thông báo",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (txtViTri.Text == "")
-            {
-                MessageBox.Show("Đơn vị tính không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            
 
             return true;
         }
 
         private bool CheckLuaChon()
         {
-            BANAN tg = getBANANByID();
+            LOAIMATHANG tg = getLOAIMATHANGByID();
             if (tg.ID == 0)
             {
-                MessageBox.Show("Chưa có bàn ăn nào được chọn",
+                MessageBox.Show("Chưa có loại mặt hàng nào được chọn",
                                 "Thông báo",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
@@ -149,11 +118,9 @@ namespace BTL_CNPM.GUI
             return true;
         }
 
-        private void CapNhat(ref BANAN cu, BANAN moi)
+        private void CapNhat(ref LOAIMATHANG cu, LOAIMATHANG moi)
         {
             cu.TEN = moi.TEN;
-            cu.SOCHO = moi.SOCHO;
-            cu.VITRI = moi.VITRI;
         }
         #endregion
 
@@ -162,29 +129,25 @@ namespace BTL_CNPM.GUI
         {
             ClearControl();
         }
-        private void LoadDgvBANAN()
+        private void LoadDgvLOAIMATHANG()
         {
             string keyWord = txtTimKiem.Text.ToUpper();
             int i = 0;
-            var listBANAN = db.BANANs.ToList()
+            var listLOAIMATHANG = db.LOAIMATHANGs.ToList()
                               .Select(p => new
                               {
                                   ID = p.ID,
-                                  Ten = p.TEN,
-                                  SoCho = p.SOCHO,
-                                  ViTri = p.VITRI
+                                  Ten = p.TEN
                               })
                               .ToList();
 
-            dgvBANANMain.DataSource = listBANAN.ToList()
-                                         .Where(p => p.Ten.ToUpper().Contains(keyWord) || p.ViTri.ToUpper().Contains(keyWord))
+            dgvLoaiMatHangMain.DataSource = listLOAIMATHANG.ToList()
+                                         .Where(p => p.Ten.ToUpper().Contains(keyWord))
                                          .Select(p => new
                                          {
                                              ID = p.ID,
                                              STT = ++i,
-                                             Ten = p.Ten,
-                                             SoCho = p.SoCho,
-                                             ViTri = p.ViTri
+                                             Ten = p.Ten
                                          }).ToList();
 
             UpdateDetail();
@@ -193,18 +156,18 @@ namespace BTL_CNPM.GUI
             try
             {
                 index = index1;
-                dgvBANAN.FocusedRowHandle = index;
-                dgvBANANMain.Select();
+                dgvLoaiMatHang.FocusedRowHandle = index;
+                dgvLoaiMatHangMain.Select();
             }
             catch
             {
 
             }
         }
-        private void ucDanhSachBanAn_Load(object sender, EventArgs e)
+        private void ucDanhSachLOAIMATHANG_Load(object sender, EventArgs e)
         {
             LoadInitControl();
-            LoadDgvBANAN();
+            LoadDgvLOAIMATHANG();
             LockControl();
         }
         #endregion
@@ -233,26 +196,25 @@ namespace BTL_CNPM.GUI
                     btnXoa.Text = "Xóa";
                     LockControl();
 
-                    BANAN moi = getBANANByForm();
-                    moi.TRANGTHAI = 0;
-                    db.BANANs.Add(moi);
+                    LOAIMATHANG moi = getLOAIMATHANGByForm();
+                    db.LOAIMATHANGs.Add(moi);
 
                     try
                     {
                         db.SaveChanges();
-                        MessageBox.Show("Thêm thông tin bàn ăn thành công",
+                        MessageBox.Show("Thêm thông tin loại mặt hàng thành công",
                                         "Thông báo",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Thêm thông tin bàn ăn thất bại\n" + ex.Message,
+                        MessageBox.Show("Thêm thông tin loại mặt hàng thất bại\n" + ex.Message,
                                         "Thông báo",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
                     }
-                    LoadDgvBANAN();
+                    LoadDgvLOAIMATHANG();
                 }
                 return;
             }
@@ -282,26 +244,26 @@ namespace BTL_CNPM.GUI
 
                     LockControl();
 
-                    BANAN cu = getBANANByID();
-                    BANAN moi = getBANANByForm();
+                    LOAIMATHANG cu = getLOAIMATHANGByID();
+                    LOAIMATHANG moi = getLOAIMATHANGByForm();
                     CapNhat(ref cu, moi);
 
                     try
                     {
                         db.SaveChanges();
-                        MessageBox.Show("Sưa thông tin bàn ăn thành công",
+                        MessageBox.Show("Sưa thông tin loại mặt hàng thành công",
                                         "Thông báo",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Sửa thông tin bàn ăn thất bại\n" + ex.Message,
+                        MessageBox.Show("Sửa thông tin loại mặt hàng thất bại\n" + ex.Message,
                                         "Thông báo",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
                     }
-                    LoadDgvBANAN();
+                    LoadDgvLOAIMATHANG();
                 }
 
                 return;
@@ -314,8 +276,8 @@ namespace BTL_CNPM.GUI
             {
                 if (!CheckLuaChon()) return;
 
-                BANAN cu = getBANANByID();
-                DialogResult rs = MessageBox.Show("Bạn có chắc chắn xóa bàn ăn " + cu.TEN + "?",
+                LOAIMATHANG cu = getLOAIMATHANGByID();
+                DialogResult rs = MessageBox.Show("Bạn có chắc chắn xóa loại mặt hàng " + cu.TEN + "?",
                                                   "Thông báo",
                                                   MessageBoxButtons.OKCancel,
                                                   MessageBoxIcon.Warning);
@@ -324,21 +286,21 @@ namespace BTL_CNPM.GUI
 
                 try
                 {
-                    db.BANANs.Remove(cu);
+                    db.LOAIMATHANGs.Remove(cu);
                     db.SaveChanges();
-                    MessageBox.Show("Xóa thông tin bàn ăn thành công",
+                    MessageBox.Show("Xóa thông tin loại mặt hàng thành công",
                                     "Thông báo",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Xóa thông tin bàn ăn thất bại\n" + ex.Message,
+                    MessageBox.Show("Xóa thông tin loại mặt hàng thất bại\n" + ex.Message,
                                     "Thông báo",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                 }
-                LoadDgvBANAN();
+                LoadDgvLOAIMATHANG();
 
                 return;
             }
@@ -358,18 +320,18 @@ namespace BTL_CNPM.GUI
         #region Sự kiện ngầm
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            LoadDgvBANAN();
+            LoadDgvLOAIMATHANG();
             txtTimKiem.Focus();
         }
 
-        private void dgvBanAn_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        private void dgvLOAIMATHANG_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             UpdateDetail();
 
             try
             {
                 index1 = index;
-                index = dgvBANAN.FocusedRowHandle;
+                index = dgvLoaiMatHang.FocusedRowHandle;
             }
             catch { }
         }

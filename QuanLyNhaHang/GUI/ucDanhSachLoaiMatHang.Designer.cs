@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDanhSachBanAn));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDanhSachLoaiMatHang));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -36,29 +36,22 @@
             this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
             this.btnSua = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtSoCho = new System.Windows.Forms.TextBox();
-            this.txtViTri = new DevExpress.XtraEditors.MemoEdit();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtTenBan = new System.Windows.Forms.TextBox();
+            this.txtTenLoaiMatHang = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvBANANMain = new DevExpress.XtraGrid.GridControl();
-            this.dgvBANAN = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dgvLoaiMatHangMain = new DevExpress.XtraGrid.GridControl();
+            this.dgvLoaiMatHang = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.STT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Ten = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SoCho = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ViTri = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtViTri.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBANANMain)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBANAN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLoaiMatHangMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLoaiMatHang)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -92,7 +85,7 @@
             this.panel3.Controls.Add(this.btnThem);
             this.panel3.Controls.Add(this.btnXoa);
             this.panel3.Controls.Add(this.btnSua);
-            this.panel3.Location = new System.Drawing.Point(713, 292);
+            this.panel3.Location = new System.Drawing.Point(713, 159);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(576, 50);
             this.panel3.TabIndex = 7;
@@ -139,73 +132,34 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.txtSoCho);
-            this.groupBox2.Controls.Add(this.txtViTri);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.txtTenBan);
+            this.groupBox2.Controls.Add(this.txtTenLoaiMatHang);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(713, 64);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(576, 222);
+            this.groupBox2.Size = new System.Drawing.Size(576, 89);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Chi tiết bàn ăn";
+            this.groupBox2.Text = "Chi tiết loại mặt hàng";
             // 
-            // txtSoCho
+            // txtTenLoaiMatHang
             // 
-            this.txtSoCho.Location = new System.Drawing.Point(145, 88);
-            this.txtSoCho.Name = "txtSoCho";
-            this.txtSoCho.Size = new System.Drawing.Size(88, 24);
-            this.txtSoCho.TabIndex = 2;
-            // 
-            // txtViTri
-            // 
-            this.txtViTri.Location = new System.Drawing.Point(145, 140);
-            this.txtViTri.Name = "txtViTri";
-            this.txtViTri.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 11F);
-            this.txtViTri.Properties.Appearance.Options.UseFont = true;
-            this.txtViTri.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
-            this.txtViTri.Size = new System.Drawing.Size(402, 68);
-            this.txtViTri.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 142);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 17);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Vị trí :";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 91);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 17);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Số chỗ :";
-            // 
-            // txtTenBan
-            // 
-            this.txtTenBan.Location = new System.Drawing.Point(145, 37);
-            this.txtTenBan.Name = "txtTenBan";
-            this.txtTenBan.Size = new System.Drawing.Size(342, 24);
-            this.txtTenBan.TabIndex = 1;
+            this.txtTenLoaiMatHang.Location = new System.Drawing.Point(163, 37);
+            this.txtTenLoaiMatHang.Name = "txtTenLoaiMatHang";
+            this.txtTenLoaiMatHang.Size = new System.Drawing.Size(342, 24);
+            this.txtTenLoaiMatHang.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(41, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 17);
+            this.label2.Size = new System.Drawing.Size(116, 17);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Tên bàn :";
+            this.label2.Text = "Tên loại mặt hàng:";
             // 
             // txtTimKiem
             // 
-            this.txtTimKiem.Location = new System.Drawing.Point(171, 25);
+            this.txtTimKiem.Location = new System.Drawing.Point(189, 25);
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(405, 24);
             this.txtTimKiem.TabIndex = 2;
@@ -216,16 +170,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(35, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 17);
+            this.label1.Size = new System.Drawing.Size(148, 17);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Tìm kiếm bàn ăn :";
+            this.label1.Text = "Tìm kiếm loại mặt hàng:";
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.dgvBANANMain);
+            this.groupBox1.Controls.Add(this.dgvLoaiMatHangMain);
             this.groupBox1.Location = new System.Drawing.Point(26, 64);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(663, 462);
@@ -233,47 +187,45 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách bàn ăn";
             // 
-            // dgvBANANMain
+            // dgvLoaiMatHangMain
             // 
-            this.dgvBANANMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBANANMain.Location = new System.Drawing.Point(3, 20);
-            this.dgvBANANMain.MainView = this.dgvBANAN;
-            this.dgvBANANMain.Name = "dgvBANANMain";
-            this.dgvBANANMain.Size = new System.Drawing.Size(657, 439);
-            this.dgvBANANMain.TabIndex = 1;
-            this.dgvBANANMain.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.dgvBANAN});
+            this.dgvLoaiMatHangMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvLoaiMatHangMain.Location = new System.Drawing.Point(3, 20);
+            this.dgvLoaiMatHangMain.MainView = this.dgvLoaiMatHang;
+            this.dgvLoaiMatHangMain.Name = "dgvLoaiMatHangMain";
+            this.dgvLoaiMatHangMain.Size = new System.Drawing.Size(657, 439);
+            this.dgvLoaiMatHangMain.TabIndex = 1;
+            this.dgvLoaiMatHangMain.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dgvLoaiMatHang});
             // 
-            // dgvBANAN
+            // dgvLoaiMatHang
             // 
-            this.dgvBANAN.Appearance.HeaderPanel.Font = new System.Drawing.Font("Times New Roman", 11.25F);
-            this.dgvBANAN.Appearance.HeaderPanel.Options.UseFont = true;
-            this.dgvBANAN.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.dgvBANAN.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.dgvBANAN.Appearance.Row.Font = new System.Drawing.Font("Times New Roman", 11.25F);
-            this.dgvBANAN.Appearance.Row.Options.UseFont = true;
-            this.dgvBANAN.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.dgvBANAN.ColumnPanelRowHeight = 30;
-            this.dgvBANAN.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dgvLoaiMatHang.Appearance.HeaderPanel.Font = new System.Drawing.Font("Times New Roman", 11.25F);
+            this.dgvLoaiMatHang.Appearance.HeaderPanel.Options.UseFont = true;
+            this.dgvLoaiMatHang.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.dgvLoaiMatHang.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dgvLoaiMatHang.Appearance.Row.Font = new System.Drawing.Font("Times New Roman", 11.25F);
+            this.dgvLoaiMatHang.Appearance.Row.Options.UseFont = true;
+            this.dgvLoaiMatHang.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.dgvLoaiMatHang.ColumnPanelRowHeight = 30;
+            this.dgvLoaiMatHang.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.STT,
-            this.Ten,
-            this.SoCho,
-            this.ViTri});
-            this.dgvBANAN.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
-            this.dgvBANAN.GridControl = this.dgvBANANMain;
-            this.dgvBANAN.Name = "dgvBANAN";
-            this.dgvBANAN.OptionsBehavior.Editable = false;
-            this.dgvBANAN.OptionsBehavior.ReadOnly = true;
-            this.dgvBANAN.OptionsCustomization.AllowColumnMoving = false;
-            this.dgvBANAN.OptionsCustomization.AllowColumnResizing = false;
-            this.dgvBANAN.OptionsCustomization.AllowFilter = false;
-            this.dgvBANAN.OptionsCustomization.AllowGroup = false;
-            this.dgvBANAN.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
-            this.dgvBANAN.OptionsFind.AllowFindPanel = false;
-            this.dgvBANAN.OptionsView.ShowGroupPanel = false;
-            this.dgvBANAN.PaintStyleName = "UltraFlat";
-            this.dgvBANAN.RowHeight = 30;
-            this.dgvBANAN.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.dgvBanAn_FocusedRowChanged);
+            this.Ten});
+            this.dgvLoaiMatHang.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
+            this.dgvLoaiMatHang.GridControl = this.dgvLoaiMatHangMain;
+            this.dgvLoaiMatHang.Name = "dgvLoaiMatHang";
+            this.dgvLoaiMatHang.OptionsBehavior.Editable = false;
+            this.dgvLoaiMatHang.OptionsBehavior.ReadOnly = true;
+            this.dgvLoaiMatHang.OptionsCustomization.AllowColumnMoving = false;
+            this.dgvLoaiMatHang.OptionsCustomization.AllowColumnResizing = false;
+            this.dgvLoaiMatHang.OptionsCustomization.AllowFilter = false;
+            this.dgvLoaiMatHang.OptionsCustomization.AllowGroup = false;
+            this.dgvLoaiMatHang.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            this.dgvLoaiMatHang.OptionsFind.AllowFindPanel = false;
+            this.dgvLoaiMatHang.OptionsView.ShowGroupPanel = false;
+            this.dgvLoaiMatHang.PaintStyleName = "UltraFlat";
+            this.dgvLoaiMatHang.RowHeight = 30;
+            this.dgvLoaiMatHang.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.dgvLOAIMATHANG_FocusedRowChanged);
             // 
             // STT
             // 
@@ -290,53 +242,30 @@
             // 
             this.Ten.AppearanceCell.Options.UseTextOptions = true;
             this.Ten.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.Ten.Caption = "Tên bàn ăn";
+            this.Ten.Caption = "Tên loại mặt hàng";
             this.Ten.FieldName = "Ten";
             this.Ten.Name = "Ten";
             this.Ten.Visible = true;
             this.Ten.VisibleIndex = 1;
             this.Ten.Width = 348;
             // 
-            // SoCho
-            // 
-            this.SoCho.AppearanceCell.Options.UseTextOptions = true;
-            this.SoCho.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.SoCho.Caption = "Số chỗ";
-            this.SoCho.FieldName = "SoCho";
-            this.SoCho.Name = "SoCho";
-            this.SoCho.Visible = true;
-            this.SoCho.VisibleIndex = 2;
-            this.SoCho.Width = 167;
-            // 
-            // ViTri
-            // 
-            this.ViTri.AppearanceCell.Options.UseTextOptions = true;
-            this.ViTri.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.ViTri.Caption = "Vị trí";
-            this.ViTri.FieldName = "ViTri";
-            this.ViTri.Name = "ViTri";
-            this.ViTri.Visible = true;
-            this.ViTri.VisibleIndex = 3;
-            this.ViTri.Width = 426;
-            // 
-            // ucDanhSachBanAn
+            // ucDanhSachLoaiMatHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Name = "ucDanhSachBanAn";
+            this.Name = "ucDanhSachLoaiMatHang";
             this.Size = new System.Drawing.Size(1308, 548);
-            this.Load += new System.EventHandler(this.ucDanhSachBanAn_Load);
+            this.Load += new System.EventHandler(this.ucDanhSachLOAIMATHANG_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtViTri.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBANANMain)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBANAN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLoaiMatHangMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLoaiMatHang)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -350,20 +279,14 @@
         private DevExpress.XtraEditors.SimpleButton btnXoa;
         private DevExpress.XtraEditors.SimpleButton btnSua;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtTenBan;
+        private System.Windows.Forms.TextBox txtTenLoaiMatHang;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraGrid.GridControl dgvBANANMain;
-        private DevExpress.XtraGrid.Views.Grid.GridView dgvBANAN;
+        private DevExpress.XtraGrid.GridControl dgvLoaiMatHangMain;
+        private DevExpress.XtraGrid.Views.Grid.GridView dgvLoaiMatHang;
         private DevExpress.XtraGrid.Columns.GridColumn STT;
         private DevExpress.XtraGrid.Columns.GridColumn Ten;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private DevExpress.XtraEditors.MemoEdit txtViTri;
-        private System.Windows.Forms.TextBox txtSoCho;
-        private DevExpress.XtraGrid.Columns.GridColumn SoCho;
-        private DevExpress.XtraGrid.Columns.GridColumn ViTri;
     }
 }
