@@ -49,13 +49,47 @@ namespace BTL_CNPM.GUI
         }
         private void LoadDsBanAn()
         {
-            var listBanAn = db.BANANs.ToList();
-
-            panelDsBanAn.Controls.Clear();
-            foreach(var item in listBanAn)
+            try
             {
-                ucBanAn uc = new ucBanAn(item, ucClick);
-                panelDsBanAn.Controls.Add(uc);
+                int KhuVucID = (int)cbxKhuVuc.EditValue;
+                var listBanAn = db.BANANs.Where(p=>p.KHUVUCBANID == KhuVucID).ToList();
+
+                panelDsBanAn.Controls.Clear();
+                foreach (var item in listBanAn)
+                {
+                    ucBanAn uc = new ucBanAn(item, ucClick);
+                    panelDsBanAn.Controls.Add(uc);
+                }
+
+                IDBanAn = listBanAn.FirstOrDefault().ID;
+                UpdateDetail(IDBanAn);
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void LoadMonAn()
+        {
+            try
+            {
+                int LoaiMatHangID = (int)cbxLoaiMatHang.EditValue;
+
+                cbxGMMatHang.Properties.DataSource = db.MATHANGs.Where(p=>p.LOAIMATHANGID == LoaiMatHangID)
+                                                     .Select(p => new
+                                                     {
+                                                         ID = p.ID,
+                                                         MatHang = p.TEN
+                                                     })
+                                                     .ToList();
+                cbxGMMatHang.Properties.DisplayMember = "MatHang";
+                cbxGMMatHang.Properties.ValueMember = "ID";
+                cbxGMMatHang.ItemIndex = 0;
+            }
+            catch
+            {
+
             }
         }
 
@@ -82,16 +116,30 @@ namespace BTL_CNPM.GUI
         {
             try
             {
-                cbxGMMatHang.Properties.DataSource = db.MATHANGs
-                                                     .Select(p => new
-                                                     {
-                                                         ID = p.ID,
-                                                         MatHang = p.TEN
-                                                     })
-                                                     .ToList();
-                cbxGMMatHang.Properties.DisplayMember = "MatHang";
-                cbxGMMatHang.Properties.ValueMember = "ID";
-                cbxGMMatHang.ItemIndex = 0;
+                /// Load cbx khu vực
+                cbxKhuVuc.Properties.DataSource = db.KHUVUCBANs
+                                                    .Select(p => new
+                                                    {
+                                                        ID = p.ID,
+                                                        TEN = p.TEN
+                                                    }).ToList();
+                cbxKhuVuc.Properties.DisplayMember = "TEN";
+                cbxKhuVuc.Properties.ValueMember = "ID";
+                cbxKhuVuc.ItemIndex = 0;
+
+                /// Load cbx loại mặt hàng
+                cbxLoaiMatHang.Properties.DataSource = db.LOAIMATHANGs
+                                                         .Select(p => new
+                                                         {
+                                                             ID = p.ID,
+                                                             TEN = p.TEN
+                                                         }).ToList();
+                cbxLoaiMatHang.Properties.DisplayMember = "TEN";
+                cbxLoaiMatHang.Properties.ValueMember = "ID";
+                cbxLoaiMatHang.ItemIndex = 0;
+
+                /// load cbx mặt hàng
+                LoadMonAn();
 
                 LoadBanTrong();
             }
@@ -105,7 +153,10 @@ namespace BTL_CNPM.GUI
         {
             try
             {
-                cbxCBBanAn.Properties.DataSource = db.BANANs.Where(p => p.TRANGTHAI == 0).ToList()
+                int KhuVucID = (int)cbxKhuVuc.EditValue;
+                cbxCBBanAn.Properties.DataSource = db.BANANs
+                                                   .Where(p=>p.KHUVUCBANID == KhuVucID)
+                                                   .Where(p => p.TRANGTHAI == 0).ToList()
                                                    .Where(p=>p.ID != IDBanAn)
                                                    .Select(p => new
                                                    {
@@ -144,12 +195,12 @@ namespace BTL_CNPM.GUI
             ClearControl();
             LoadDsBanAn();
 
-            IDBanAn = db.BANANs.FirstOrDefault().ID;
-            UpdateDetail(IDBanAn);
+            
         }
         #endregion
 
         #region Hàm chức năng
+        // Hiển thị danh sách các món đã gọi khi click vào bàn
         private void UpdateDetail(int ID)
         {
             try
@@ -243,6 +294,7 @@ namespace BTL_CNPM.GUI
                 db.SaveChanges();
 
                 UpdateDsBanAn();
+                UpdateDetail(banan.ID);
             }
             catch
             {
@@ -497,5 +549,16 @@ namespace BTL_CNPM.GUI
         }
         #endregion
 
+        #region Sự kiện ngầm
+        private void cbxKhuVuc_EditValueChanged(object sender, EventArgs e)
+        {
+            LoadDsBanAn();
+        }
+
+        private void cbxLoaiMatHang_EditValueChanged(object sender, EventArgs e)
+        {
+            LoadMonAn();
+        }
+        #endregion
     }
 }
