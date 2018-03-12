@@ -48,6 +48,7 @@ namespace BTL_CNPM.GUI
                 ans.TEN = txtTenBan.Text;
                 ans.VITRI = txtViTri.Text;
                 ans.SOCHO = Int32.Parse(txtSoCho.Text);
+                ans.KHUVUCBANID = (int) cbxKhuVucBan.EditValue;
             }
             catch { }
 
@@ -59,6 +60,7 @@ namespace BTL_CNPM.GUI
             txtTenBan.Text = "";
             txtViTri.Text = "";
             txtSoCho.Text = "";
+            cbxKhuVucBan.ItemIndex = 0;
         }
 
         private void UpdateDetail()
@@ -72,6 +74,7 @@ namespace BTL_CNPM.GUI
                 txtTenBan.Text = tg.TEN;
                 txtViTri.Text = tg.VITRI;
                 txtSoCho.Text = tg.SOCHO.ToString();
+                cbxKhuVucBan.EditValue = tg.KHUVUCBANID;
             }
             catch
             {
@@ -84,6 +87,7 @@ namespace BTL_CNPM.GUI
             txtTenBan.Enabled = false;
             txtSoCho.Enabled = false;
             txtViTri.Enabled = false;
+            cbxKhuVucBan.Enabled = false;
 
             dgvBANANMain.Enabled = true;
             txtTimKiem.Enabled = true;
@@ -98,6 +102,7 @@ namespace BTL_CNPM.GUI
             txtTenBan.Enabled = true;
             txtSoCho.Enabled = true;
             txtViTri.Enabled = true;
+            cbxKhuVucBan.Enabled = true;
 
             dgvBANANMain.Enabled = false;
             txtTimKiem.Enabled = false;
@@ -124,14 +129,6 @@ namespace BTL_CNPM.GUI
                 return false;
             }
 
-            if (txtViTri.Text == "")
-            {
-                MessageBox.Show("Đơn vị tính không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            
-
             return true;
         }
 
@@ -154,6 +151,7 @@ namespace BTL_CNPM.GUI
             cu.TEN = moi.TEN;
             cu.SOCHO = moi.SOCHO;
             cu.VITRI = moi.VITRI;
+            cu.KHUVUCBANID = moi.KHUVUCBANID;
         }
         #endregion
 
@@ -161,6 +159,17 @@ namespace BTL_CNPM.GUI
         private void LoadInitControl()
         {
             ClearControl();
+
+            /// Load combobox khu vực bàn
+            cbxKhuVucBan.Properties.DataSource = db.KHUVUCBANs
+                                                   .Select(p=> new
+                                                    {
+                                                        TEN = p.TEN,
+                                                        ID = p.ID
+                                                    }).ToList();
+            cbxKhuVucBan.Properties.DisplayMember = "TEN";
+            cbxKhuVucBan.Properties.ValueMember = "ID";
+            cbxKhuVucBan.ItemIndex = 0;
         }
         private void LoadDgvBANAN()
         {
@@ -172,19 +181,21 @@ namespace BTL_CNPM.GUI
                                   ID = p.ID,
                                   Ten = p.TEN,
                                   SoCho = p.SOCHO,
-                                  ViTri = p.VITRI
+                                  ViTri = p.VITRI,
+                                  KhuVucBan = db.KHUVUCBANs.Where(z=>z.ID == p.KHUVUCBANID).FirstOrDefault().TEN
                               })
                               .ToList();
 
             dgvBANANMain.DataSource = listBANAN.ToList()
-                                         .Where(p => p.Ten.ToUpper().Contains(keyWord) || p.ViTri.ToUpper().Contains(keyWord))
+                                         .Where(p => p.Ten.ToUpper().Contains(keyWord) || p.ViTri.ToUpper().Contains(keyWord) || p.KhuVucBan.Contains(keyWord))
                                          .Select(p => new
                                          {
                                              ID = p.ID,
                                              STT = ++i,
                                              Ten = p.Ten,
                                              SoCho = p.SoCho,
-                                             ViTri = p.ViTri
+                                             ViTri = p.ViTri,
+                                             KhuVucBan = p.KhuVucBan
                                          }).ToList();
 
             UpdateDetail();

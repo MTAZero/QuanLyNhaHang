@@ -51,6 +51,9 @@
             this.Ten = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SoCho = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ViTri = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbxKhuVucBan = new DevExpress.XtraEditors.LookUpEdit();
+            this.KhuVucBan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -59,6 +62,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBANANMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBANAN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxKhuVucBan.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -92,7 +96,7 @@
             this.panel3.Controls.Add(this.btnThem);
             this.panel3.Controls.Add(this.btnXoa);
             this.panel3.Controls.Add(this.btnSua);
-            this.panel3.Location = new System.Drawing.Point(713, 292);
+            this.panel3.Location = new System.Drawing.Point(713, 324);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(576, 50);
             this.panel3.TabIndex = 7;
@@ -139,6 +143,8 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.cbxKhuVucBan);
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtSoCho);
             this.groupBox2.Controls.Add(this.txtViTri);
             this.groupBox2.Controls.Add(this.label4);
@@ -147,21 +153,21 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(713, 64);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(576, 222);
+            this.groupBox2.Size = new System.Drawing.Size(576, 254);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chi tiết bàn ăn";
             // 
             // txtSoCho
             // 
-            this.txtSoCho.Location = new System.Drawing.Point(145, 88);
+            this.txtSoCho.Location = new System.Drawing.Point(144, 126);
             this.txtSoCho.Name = "txtSoCho";
             this.txtSoCho.Size = new System.Drawing.Size(88, 24);
             this.txtSoCho.TabIndex = 2;
             // 
             // txtViTri
             // 
-            this.txtViTri.Location = new System.Drawing.Point(145, 140);
+            this.txtViTri.Location = new System.Drawing.Point(144, 173);
             this.txtViTri.Name = "txtViTri";
             this.txtViTri.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtViTri.Properties.Appearance.Options.UseFont = true;
@@ -172,7 +178,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 142);
+            this.label4.Location = new System.Drawing.Point(40, 175);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
             this.label4.TabIndex = 3;
@@ -181,7 +187,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 91);
+            this.label3.Location = new System.Drawing.Point(40, 128);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 17);
             this.label3.TabIndex = 2;
@@ -189,7 +195,7 @@
             // 
             // txtTenBan
             // 
-            this.txtTenBan.Location = new System.Drawing.Point(145, 37);
+            this.txtTenBan.Location = new System.Drawing.Point(144, 79);
             this.txtTenBan.Name = "txtTenBan";
             this.txtTenBan.Size = new System.Drawing.Size(342, 24);
             this.txtTenBan.TabIndex = 1;
@@ -197,7 +203,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 40);
+            this.label2.Location = new System.Drawing.Point(40, 81);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 17);
             this.label2.TabIndex = 0;
@@ -257,6 +263,7 @@
             this.dgvBANAN.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.STT,
             this.Ten,
+            this.KhuVucBan,
             this.SoCho,
             this.ViTri});
             this.dgvBANAN.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
@@ -284,7 +291,7 @@
             this.STT.Name = "STT";
             this.STT.Visible = true;
             this.STT.VisibleIndex = 0;
-            this.STT.Width = 92;
+            this.STT.Width = 63;
             // 
             // Ten
             // 
@@ -295,7 +302,7 @@
             this.Ten.Name = "Ten";
             this.Ten.Visible = true;
             this.Ten.VisibleIndex = 1;
-            this.Ten.Width = 348;
+            this.Ten.Width = 269;
             // 
             // SoCho
             // 
@@ -305,8 +312,8 @@
             this.SoCho.FieldName = "SoCho";
             this.SoCho.Name = "SoCho";
             this.SoCho.Visible = true;
-            this.SoCho.VisibleIndex = 2;
-            this.SoCho.Width = 167;
+            this.SoCho.VisibleIndex = 3;
+            this.SoCho.Width = 135;
             // 
             // ViTri
             // 
@@ -316,8 +323,43 @@
             this.ViTri.FieldName = "ViTri";
             this.ViTri.Name = "ViTri";
             this.ViTri.Visible = true;
-            this.ViTri.VisibleIndex = 3;
-            this.ViTri.Width = 426;
+            this.ViTri.VisibleIndex = 4;
+            this.ViTri.Width = 342;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(40, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 17);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Khu vực bàn:";
+            // 
+            // cbxKhuVucBan
+            // 
+            this.cbxKhuVucBan.Location = new System.Drawing.Point(144, 30);
+            this.cbxKhuVucBan.Name = "cbxKhuVucBan";
+            this.cbxKhuVucBan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.cbxKhuVucBan.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 11F);
+            this.cbxKhuVucBan.Properties.Appearance.Options.UseFont = true;
+            this.cbxKhuVucBan.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Times New Roman", 11F);
+            this.cbxKhuVucBan.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cbxKhuVucBan.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.cbxKhuVucBan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxKhuVucBan.Properties.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.cbxKhuVucBan.Properties.ShowHeader = false;
+            this.cbxKhuVucBan.Size = new System.Drawing.Size(233, 26);
+            this.cbxKhuVucBan.TabIndex = 35;
+            // 
+            // KhuVucBan
+            // 
+            this.KhuVucBan.Caption = "Khu vực bàn";
+            this.KhuVucBan.FieldName = "KhuVucBan";
+            this.KhuVucBan.Name = "KhuVucBan";
+            this.KhuVucBan.Visible = true;
+            this.KhuVucBan.VisibleIndex = 2;
+            this.KhuVucBan.Width = 224;
             // 
             // ucDanhSachBanAn
             // 
@@ -337,6 +379,7 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBANANMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBANAN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbxKhuVucBan.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -365,5 +408,8 @@
         private System.Windows.Forms.TextBox txtSoCho;
         private DevExpress.XtraGrid.Columns.GridColumn SoCho;
         private DevExpress.XtraGrid.Columns.GridColumn ViTri;
+        private System.Windows.Forms.Label label5;
+        private DevExpress.XtraEditors.LookUpEdit cbxKhuVucBan;
+        private DevExpress.XtraGrid.Columns.GridColumn KhuVucBan;
     }
 }
